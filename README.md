@@ -1,2 +1,4 @@
-# DSA-Assignment---Fibonacci-Series
-Simple C++ program to calculate fibonacci number at a given index.
+> National Institute of Technology Silchar,
+> MiniProject-I,
+> Data Structures,
+> Course Code: CS 201
