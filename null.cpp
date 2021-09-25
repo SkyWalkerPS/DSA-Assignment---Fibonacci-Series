@@ -3,7 +3,7 @@
 #include<string.h>
 
 char* sum(char* a, char* b){
-    char* temp = (char*)malloc(20000*sizeof(char));
+    char* temp = (char*)malloc(4500*sizeof(char));
     int i=0;
     int r=0;
 
@@ -51,8 +51,8 @@ char* fact(int n, char* a, char* b){
 int main(){
     int n;
     scanf("%d", &n);
-    char *a=(char*)malloc(20000*sizeof(char));
-    char *b=(char*)malloc(20000*sizeof(char));
+    char *a=(char*)malloc(4500*sizeof(char));
+    char *b=(char*)malloc(4500*sizeof(char));
     a = "0";
     b = "1";
     char * ans;
