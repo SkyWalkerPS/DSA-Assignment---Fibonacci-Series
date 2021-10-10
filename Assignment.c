@@ -1,64 +1,65 @@
 #include<stdio.h>
-#include<stdlib.h>
-#include<string.h>
+#include<time.h>
 
-char* sum(char* a, char* b){
-    char* temp = (char*)malloc(4500*sizeof(char));
-    int i=0;
-    int r=0;
 
-    while(i<strlen(a) && i<strlen(b)){
-        int c = a[i]+b[i]+ r -'0'-'0';
-        temp[i]=(c%10 + '0');
-        r = c/10;
-        i++;
+#define MAX 4500
+
+char result[MAX],temp_1[MAX],temp_2[MAX];
+
+void addition(){
+    int carry = 0;
+    for(int i=MAX-1;i>=0;i--){
+        int digit  = (temp_1[i]-'0')+(temp_2[i]-'0')+carry;
+        result[i] = (digit%10) + '0';
+        carry = digit/10;
     }
-    while(i<strlen(a)){
-        int c = a[i]+ r -'0';
-        temp[i]=(c%10 + '0');
-        r = c/10;
-        i++;
-    }
-    while(i<strlen(b)){
-        int c = b[i]+ r -'0';
-        temp[i]=(c%10 + '0');
-        r = c/10;
-        i++;
-    }
-    while(r){
-        temp[i]=(r%10 + '0');
-        r=r/10;
-        i++;
-    }
-    temp[i]='\0';
-    return temp;
 }
 
-char* fact(int n, char* a, char* b){
-    if(n==0)return a;
-    if(n==1)return b;
 
-    char* temp=NULL;
-    for(int i=2; i<=n; i++){
-        temp = sum(a, b);
-
-        free(a);
-        a = b;
-        b = temp;
+void fibonacci(int N){
+    if(N==1||N==0){
+        printf("%d",N);
+        return;
     }
-    return b;
+    for(int i=2;i<=N;i++){
+        addition();
+        for(int i=0;i<MAX;i++){
+            temp_1[i]=temp_2[i];
+            temp_2[i]=result[i];
+            
+        }
+    }
+  int firstDigit = 0;
+  for (int i = 0; i < MAX; i++)
+  {
+    if (firstDigit == 0 && result[i] == '0')
+    {
+      continue;
+    }
+
+    if (firstDigit == 0 && result[i] != '0')
+    {
+      firstDigit = 1;
+    }
+    printf("%c", result[i]);
+  }
+  
 }
+
+
+
 int main(){
-    int n;
-    scanf("%d", &n);
-    char *a=(char*)malloc(4500*sizeof(char));
-    char *b=(char*)malloc(4500*sizeof(char));
-    a = "0";
-    b = "1";
-    char * ans;
-    ans = fact(n, a, b);
-    ans = strrev(ans);
-    printf("%s\n", ans);
-    
-    return 0;
-}
+    int N;
+    printf("Enter the index of the fibonacci number to be found :\n");
+    scanf("%d",&N);
+    for(int i=0;i<MAX;i++){
+        temp_1[i]='0';
+        temp_2[i]='0';
+        result[i]='0';
+    }
+    temp_2[MAX-1]='1';
+    printf("The %dth fibonacci number is : \n",N);
+    fibonacci(N);
+    printf("\n");
+
+return 0;}
