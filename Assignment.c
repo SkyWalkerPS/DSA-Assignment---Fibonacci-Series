@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<time.h>
 
 
 #define MAX 4500
@@ -62,4 +61,5 @@ int main(){
     fibonacci(N);
     printf("\n");
 
-return 0;}
+return 0;
+}
